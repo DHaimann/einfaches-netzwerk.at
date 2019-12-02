@@ -118,7 +118,7 @@ Function Test-TeamsMessage {
     New-asTeamsMessage
 
     #Write Microsoft Teams Message Facts
-	#Repeat as often as needed
+    #Repeat as often as needed
     Write-asTeamsMessage -MessageName "Operating System" -MessageValue "Windows 10 Enterprise 1909"
     
     #Send Microsoft Teams Message
