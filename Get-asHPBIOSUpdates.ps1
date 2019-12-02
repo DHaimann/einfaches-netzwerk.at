@@ -52,7 +52,7 @@
 				Description:	Model 8594, Version 02.03.01, Release Date 2019-10-15
 				
 			Distributes the package to DP group
-			Writes log to C:\DriverFactory\Get-asHPBIOSUpdates.log
+			Writes cmtrace readable log to C:\DriverFactory\Get-asHPBIOSUpdates.log
 				Could not retrieve BIOS information for Model HP Z4 G4 Workstation Win10 1909	Get-asHPBIOSUpdates	28.10.2019 10:50:27	0 (0x0000)
 				Will try older Win10 version	Get-asHPBIOSUpdates	28.10.2019 10:50:27	0 (0x0000)
 				@{Id=sp99558; Name=HP Z4G4 Workstation System BIOS; Category=BIOS; Version=01.86; Vendor=HP Inc.; ReleaseType=Recommended; SSM=true; DPB=false; Url=ftp.hp.com/pub/softpaq/sp99501-100000/sp99558.exe; ReleaseNotes=ftp.hp.com/pub/softpaq/sp99501-100000/sp99558.html; Metadata=ftp.hp.com/pub/softpaq/sp99501-100000/sp99558.cva; MD5=48d9197e84227ae16dbc94349412542a; Size=31021840; ReleaseDate=2019-10-08}	Get-asHPBIOSUpdates	28.10.2019 10:50:30	0 (0x0000)
