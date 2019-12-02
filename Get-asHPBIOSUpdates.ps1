@@ -308,7 +308,7 @@ Function Test-asIsAdmin {
     $Global:Component = $MyInvocation.MyCommand.Name
     If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
         Write-Output "Uups, you do not have admin rights to run this script.`nPlease re-run this script as an Administrator!"
-        Write-asLog -Message "Uups, you do not have admin rights to run this script.Please re-run this script as an Administrator!" -LogLevel 3
+        Write-asLog -Message "Uups, you do not have admin rights to run this script. Please re-run this script as an Administrator!" -LogLevel 3
         Break
     } Else {
         Write-asLog -Message "Script runs with admin rights" -LogLevel 1
