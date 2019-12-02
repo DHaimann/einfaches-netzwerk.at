@@ -23,6 +23,8 @@
 			Network share for source files like
 			\\fileserver\Sources$\OSD\HP BIOS Update Packages
 			
+			Search for #modify on the left and adjust for your needs!
+			
 		Optional:
 			SMTP Username and Password
 			SMTP Server Name
