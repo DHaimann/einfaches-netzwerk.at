@@ -438,7 +438,7 @@ Function Get-asHPBIOSUpdates {
 
                     # Copy extra files to extract folder
                     If (!($null -eq $($Global:Settings.ExtraFiles))) {                    
-                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\*" -Destination "$ExtractFolderfull" -Force
+                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\HPBios\*" -Destination "$ExtractFolderfull" -Force
                         Write-asLog -Message "Extrafiles copied to $ExtractFolderfull" -LogLevel 1
                     }
 		    
