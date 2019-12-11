@@ -446,11 +446,11 @@ Function Get-asHPDriverPacks {
                     Write-asLog -Message "DriverPackInfo.xml created in $ExtractFolderfull" -LogLevel 1                    
                     Write-asLog -Message "Driver package files copied to $ExtractFolderfull" -LogLevel 1
 
-                    # Copy extra files to extract folder
+                    <# Copy extra files to extract folder
                     If (!($null -eq $($Global:Settings.ExtraFiles))) {                    
-                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\*" -Destination "$ExtractFolderfull" -Force
+                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\HPBios\*" -Destination "$ExtractFolderfull" -Force
                         Write-asLog -Message "Extrafiles copied to $ExtractFolderfull" -LogLevel 1
-                    }
+                    }#>
 		    
                     #Copy files to server
                     If ($DownloadToServer) {
