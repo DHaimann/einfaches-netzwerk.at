@@ -1,4 +1,4 @@
-﻿Function Start-asLog {
+Function Start-asLog {
     [CmdletBinding()]
         Param (
             [ValidateScript({ Split-Path $_ -Parent | Test-Path })]
@@ -506,8 +506,16 @@ Function Get-asHPBIOSUpdates {
 
         # Finish Teams message
         Write-asTeamsMessage -MessageName "RunTime" -MessageValue "Total $RunTime minutes"
-        If ($SendTeams) {            Send-asTeamsMessage -MessageTitle "HP BIOS Updates" `                -MessageText "Summary about the execution of $Global:Component" `                -ActivityTitle "DriverFactory" `                -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `                -ActivityText "Script finished" `                -ActivityImagePath "https://www8.hp.com/at/de/images/i/hpi/header-footer/caas-hf-v3.2/hpi-hp-logo-pr.gif" `                -ButtonName "HP Support" `                -ButtonUri "https://support.hp.com/at-de/drivers"
-        }
+        If ($SendTeams) {
+		Send-asTeamsMessage -MessageTitle "HP BIOS Updates" `
+                -MessageText "Summary about the execution of $Global:Component" `
+                -ActivityTitle "DriverFactory" `
+                -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `
+                -ActivityText "Script finished" `
+                -ActivityImagePath "https://www8.hp.com/at/de/images/i/hpi/header-footer/caas-hf-v3.2/hpi-hp-logo-pr.gif" `
+                -ButtonName "HP Support" `
+                -ButtonUri "https://support.hp.com/at-de/drivers"
+	}
 
         #Finish log file
         Write-asLog -Message "Script finished" -LogLevel 1
