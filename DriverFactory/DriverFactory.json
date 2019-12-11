@@ -13,7 +13,7 @@
 	"LocalRootFolder": "C:\\DriverFactory",
 	"ModelsHPCSV": "C:\\Util\\DriverFactory\\Models\\HPModels.csv",
 	"ModelsDellCSV": "C:\\Util\\DriverFactory\\Models\\DellModels.csv",
-	"ExtraFiles": "C:\\Util\\DriverFactory\\Extrafiles\\HPBios",
+	"ExtraFiles": "C:\\Util\\DriverFactory\\Extrafiles",
 	"FileServerName": "fileservername",
 	"FileServerShareName": "sharename$",
 	"FileServerHPBIOSSubfolder": "OSD\\HP BIOS Update Packages",
