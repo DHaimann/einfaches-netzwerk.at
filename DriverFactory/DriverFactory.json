@@ -1,0 +1,23 @@
+{
+	"MailUserName":	"configmgr@mydomain.at",
+	"MailPassword": "FancyPassword",
+	"MailFrom": "configmgr@mydomain.at",
+	"MailSMTPServer": "smtpserver.mydomain.at",
+	"MailMailTo": "dietmar.haimann@mydomain.at",
+	"TeamsURI": "https://outlook.office.com/webhook/my-teams-webhook-link",
+	"CMSiteCode": "PS1",
+	"CMProviderMachineName": "siteserver.mydomain.at",
+	"CMDistributionPointGroup": "Linz",
+	"CMBIOSPackageFolderPath": ".\\Package\\BIOS Packages",
+	"CMDriversPackageFolderPath": ".\\Package\\Driver Packages",
+	"LocalRootFolder": "C:\\DriverFactory",
+	"ModelsHPCSV": "C:\\Util\\DriverFactory\\Models\\HPModels.csv",
+	"ModelsDellCSV": "C:\\Util\\DriverFactory\\Models\\DellModels.csv",
+	"ExtraFiles": "C:\\Util\\DriverFactory\\Extrafiles\\HPBios",
+	"FileServerName": "fileservername",
+	"FileServerShareName": "sharename$",
+	"FileServerHPBIOSSubfolder": "OSD\\HP BIOS Update Packages",
+	"FileServerHPDriversSubfolder": "OSD\\HP Driver Packages",
+	"FileServerDellBIOSSubfolder": "OSD\\Dell BIOS Update Packages",
+	"FileServerDellDriversSubfolder": "OSD\\Dell Driver Packages"
+}
