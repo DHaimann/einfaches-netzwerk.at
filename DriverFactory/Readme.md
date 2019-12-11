@@ -33,7 +33,10 @@
 	Configure:
 			Go to C:\Util\DriverFactory\DriverFactory.json and configure for your needs
 			No need to do any settings in the script directly
-			
+	Parameters:
+			Use -SendMail to get a summary via e-mail
+			Use -SendTeams to get a summary via Microsoft Teams
+			or both			
 	Description:
 		The script does the following:
 			Reads C:\Util\DriverFactory\DriverFactory.json for settings
