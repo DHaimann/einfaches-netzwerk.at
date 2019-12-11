@@ -7,10 +7,10 @@
 			ConfigMgr-Console installed
 			
 			The followings folders:
-				C:\Util\DriverFactory\ 				> place the script in this folder
+				C:\Util\DriverFactory\ 			> place the script in this folder
 				C:\Util\DriverFactory\Extrafiles 	> place the password.bin, ssm.cab and ssm.exe in this folder
 				C:\Util\DriverFactory\Models		> place the HPModels.csv in this folder
-				C:\DriverFactory					> this is the folder where the magic happens (automatically created)
+				C:\DriverFactory			> this is the folder where the magic happens
 				
 			File called C:\Util\DriverFactory\Models\HPModels.csv with the following content:
 			
