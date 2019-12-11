@@ -446,12 +446,12 @@ Function Get-asHPDriverPacks {
                     Write-asLog -Message "DriverPackInfo.xml created in $ExtractFolderfull" -LogLevel 1                    
                     Write-asLog -Message "Driver package files copied to $ExtractFolderfull" -LogLevel 1
 
-                    # Copy extra files
-                    If ($ExtraFiles) {                    
-                        $null = Copy-Item -Path "$ExtraFiles\*" -Destination "$ExtractFolderfull" -Force
-                        Write-asLog -Message "$ExtraFiles copied to $ExtractFolderfull" -LogLevel 1
+                    # Copy extra files to extract folder
+                    If (!($null -eq $($Global:Settings.ExtraFiles))) {                    
+                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\*" -Destination "$ExtractFolderfull" -Force
+                        Write-asLog -Message "Extrafiles copied to $ExtractFolderfull" -LogLevel 1
                     }
-                    
+		    
                     #Copy files to server
                     If ($DownloadToServer) {
                         $PackageSourceFull = "$($SMBShare.LocalPath)" 
@@ -517,7 +517,7 @@ Function Get-asHPDriverPacks {
         # Finish Teams message
         Write-asTeamsMessage -MessageName "RunTime" -MessageValue "Total $RunTime minutes"
         If ($SendTeams) {
-		Send-asTeamsMessage -MessageTitle "HP BIOS Updates" `
+		Send-asTeamsMessage -MessageTitle "HP Driver Packs" `
                 -MessageText "Summary about the execution of $Global:Component" `
                 -ActivityTitle "DriverFactory" `
                 -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `
