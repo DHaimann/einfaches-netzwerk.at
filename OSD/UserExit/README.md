@@ -38,7 +38,6 @@ HP EliteDesk G2 DM 65W            > 8056 > 800G2DM
 HP EliteDesk G2 Desktop Mini      > 8056 > 800G2DM
 HP EliteDesk G2 Desktop Mini 65W  > 8056 > 800G2DM
 
-
 Now you are able to add a new model without touching the Task Sequence.
   
 Thanks to:
