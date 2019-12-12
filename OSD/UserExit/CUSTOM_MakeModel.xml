@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<MakeModel>
+	<Make name="HP">
+		<Model name="1993" value="650G1"></Model>
+		<Model name="80FD" value="650G2"></Model>
+		<Model name="198F" value="840G1"></Model>
+		<Model name="2216" value="840G2"></Model>
+		<Model name="8079" value="840G3"></Model>
+		<Model name="18E5" value="800G1"></Model>
+		<Model name="8055" value="800G2"></Model>
+		<Model name="8056" value="800G2"></Model>
+		<Model name="829A" value="800G3"></Model>
+		<Model name="845A" value="800G4"></Model>
+		<Model name="8594" value="800G5"></Model>
+		<Model name="18E4" value="800G1TWR"></Model>
+		<Model name="8053" value="800G2TWR"></Model>
+		<Model name="8298" value="800G3TWR"></Model>
+		<Model name="83E0" value="800G4TWR"></Model>
+		<Model name="8591" value="800G5TWR"></Model>
+		<Model name="828B" value="612G2"></Model>
+		<Model name="81C5" value="Z4G4"></Model>
+		<Model name="81C6" value="Z6G4"></Model>
+		<Model name="2129" value="Z840"></Model>
+		<Model name="8548" value="X360830G6"></Model>
+	</Make>
+	<Make name="Dell">
+		<Model name="08NJ82" value="L5490"></Model>
+		<Model name="09F5RW" value="L5490"></Model>
+		<Model name="03441V" value="L5590"></Model>
+		<Model name="0PD9KD" value="L5400"></Model>
+		<Model name="0M14W7" value="L5500"></Model>
+	</Make>
+	<Make name="Panasonic">
+		<Model name="FZM1-2" value="FZ"></Model>
+		<Model name="FZG1-4" value="FZ"></Model>
+	</Make>
+</MakeModel>
