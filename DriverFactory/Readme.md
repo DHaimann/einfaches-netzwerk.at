@@ -81,5 +81,11 @@
 		Nathan Kofahl
 			@nkofahl
 			https://twitter.com/nkofahl
+			
+		David Segura
+			@SeguraOSD
+			https://www.powershellgallery.com/profiles/Segura
+			https://www.osdeploy.com/
+		
 		
 		... and so many more!
