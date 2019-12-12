@@ -18,7 +18,7 @@ Configure:
     Model: L5490
     ...
     
-  6. Add the PackageIds to the Details pane i.e.
+  6. Add the PackageIds to the Details pane e.g.
     W10x64DriverPackageID > PS100AB1
     BIOSUpdatePackageID   > PS100AB2
     SSMDriverPackageID    > PS100AB3
