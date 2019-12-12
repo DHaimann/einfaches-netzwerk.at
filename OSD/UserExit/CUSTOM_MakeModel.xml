@@ -6,12 +6,12 @@
 		<Model name="198F" value="840G1"></Model>
 		<Model name="2216" value="840G2"></Model>
 		<Model name="8079" value="840G3"></Model>
-		<Model name="18E5" value="800G1"></Model>
-		<Model name="8055" value="800G2"></Model>
-		<Model name="8056" value="800G2"></Model>
-		<Model name="829A" value="800G3"></Model>
-		<Model name="845A" value="800G4"></Model>
-		<Model name="8594" value="800G5"></Model>
+		<Model name="18E5" value="800G1DM"></Model>
+		<Model name="8055" value="800G2DM"></Model>
+		<Model name="8056" value="800G2DM"></Model>
+		<Model name="829A" value="800G3DM"></Model>
+		<Model name="845A" value="800G4DM"></Model>
+		<Model name="8594" value="800G5DM"></Model>
 		<Model name="18E4" value="800G1TWR"></Model>
 		<Model name="8053" value="800G2TWR"></Model>
 		<Model name="8298" value="800G3TWR"></Model>
