@@ -4,8 +4,8 @@ Author:
 Configure:
   1. Configure your MDT Database
   2. Configure MDT database described perfectly fine by Mike Terrill
-    https://miketerrill.net/2017/09/10/configuration-manager-dynamic-drivers-bios-management-with-total-control-part-1/
-    https://miketerrill.net/2017/09/17/configuration-manager-dynamic-drivers-bios-management-with-total-control-part-2/
+  https://miketerrill.net/2017/09/10/configuration-manager-dynamic-drivers-bios-management-with-total-control-part-1/
+  https://miketerrill.net/2017/09/17/configuration-manager-dynamic-drivers-bios-management-with-total-control-part-2/
 
   3. Go to the Make and Model table
   4. Create entries that according to the entries in the xml file e.g.
@@ -31,13 +31,14 @@ Configure:
   8. Run a Gather Task Sequence step and process rules in CustomSettings.ini
   
 That way you are able to add more BaseBoard products to a single Model e.g.
-    HP EliteDesk G2 Mini 65W          > 8056 > 800G2DM
-    HP EliteDesk G2 Mini 65W          > 8055 > 800G2DM
-    HP EliteDesk G2 Mini              > 8056 > 800G2DM
-    HP EliteDesk G2 DM 65W            > 8056 > 800G2DM
-    HP EliteDesk G2 Desktop Mini      > 8056 > 800G2DM
-    HP EliteDesk G2 Desktop Mini 65W  > 8056 > 800G2DM
-    
+HP EliteDesk G2 Mini 65W          > 8056 > 800G2DM
+HP EliteDesk G2 Mini 65W          > 8055 > 800G2DM
+HP EliteDesk G2 Mini              > 8056 > 800G2DM
+HP EliteDesk G2 DM 65W            > 8056 > 800G2DM
+HP EliteDesk G2 Desktop Mini      > 8056 > 800G2DM
+HP EliteDesk G2 Desktop Mini 65W  > 8056 > 800G2DM
+
+
 Now you are able to add a new model without touching the Task Sequence.
   
 Thanks to:
