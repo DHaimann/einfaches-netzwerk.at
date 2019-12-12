@@ -32,12 +32,12 @@ Configure:
   9. Run a Gather Task Sequence step and process rules in CustomSettings.ini
   
 That way you are able to add more BaseBoard products to a single Model e.g.
-HP EliteDesk G2 Mini 65W          > 8056 > 800G2DM
-HP EliteDesk G2 Mini 65W          > 8055 > 800G2DM
-HP EliteDesk G2 Mini              > 8056 > 800G2DM
-HP EliteDesk G2 DM 65W            > 8056 > 800G2DM
-HP EliteDesk G2 Desktop Mini      > 8056 > 800G2DM
-HP EliteDesk G2 Desktop Mini 65W  > 8056 > 800G2DM
+  HP EliteDesk G2 Mini 65W          > 8056 > 800G2DM
+  HP EliteDesk G2 Mini 65W          > 8055 > 800G2DM
+  HP EliteDesk G2 Mini              > 8056 > 800G2DM
+  HP EliteDesk G2 DM 65W            > 8056 > 800G2DM
+  HP EliteDesk G2 Desktop Mini      > 8056 > 800G2DM
+  HP EliteDesk G2 Desktop Mini 65W  > 8056 > 800G2DM
 
 Now you are able to add a new model without touching the Task Sequence.
   
