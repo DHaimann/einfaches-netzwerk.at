@@ -22,6 +22,9 @@
 			Network share for source files like
 			\\fileserver\share$\OSD\HP BIOS Update Packages
 			
+			The UserExit-Script and the MDT database configuration are necessary to make sense
+			https://github.com/DHaimann/einfaches-netzwerk.at/tree/master/OSD/UserExit
+			
 		Optional:
 			SMTP Username and Password
 			SMTP Server Name
