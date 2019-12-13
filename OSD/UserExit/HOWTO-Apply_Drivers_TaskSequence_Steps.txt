@@ -1,0 +1,44 @@
+1. Create required driver packages with Get-asHPDriverPackages.ps1
+2. Create required driver packages with Get-asDellDriverPackages.ps1
+3. Prepare MDT Database for all models and fill out the package ID per model
+	a. W10x64DriverPackageID
+
+4. Add the following task sequence steps to install driver packs after Apply Windows step in WinPE
+
+	1.	a. Type: Group
+		b. Name: Apply Driver Packs
+		c. Condition:
+		d. Command line:
+		e. Start in:
+
+		2.	a. Type: Set Dynamic Variables
+			b. Name: Set Driver Download
+			c. Condition:
+			d. Dynamic rules and variables:
+				SET OSDDownloadDestinationLocationType = "TSCache"
+				SET OSDDownloadContinueDownloadOnError = "1"
+				SET OSDDownloadDownloadPackages = "%W10x64DriverPackageID%"
+				SET OSDDownloadDestinationVariable = "OSDDriverPath"
+
+		3.	a. Type: Run Command Line
+			b. Name: Downloading Driver Package %W10x64DriverPackageID%
+			c. Condition:
+			d. Command line: OSDDownloadContent.exe
+			e. Start in:
+			f. Package:
+		
+		4.	a. Type: Set Dynamic Variables
+			b. Name: Reset Download Variables
+			c. Condition:
+			d. Dynamic rules and variables:
+				SET OSDDownloadDestinationLocationType = ""
+				SET OSDDownloadContinueDownloadOnError = ""
+				SET OSDDownloadDownloadPackages = ""
+				SET OSDDownloadDestinationVariable = ""
+				
+		5.	a. Type: Run Command Line
+			b. Name: Apply Drivers for %Model%
+			c. Condition:
+			d. Command line: DISM.exe /Image:%OSDisk%\ /Add-Driver /Driver:%OSDDriverPath01% /Recurse
+			e. Start in:
+			f. Package:

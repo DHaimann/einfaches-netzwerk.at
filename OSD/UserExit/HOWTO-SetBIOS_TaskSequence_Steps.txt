@@ -1,0 +1,94 @@
+1. Collect the REPSET files for all your models and configure them for your needs e.g.
+
+	BIOSConfig 1.0
+	;
+	;     Originally created by BIOS Configuration Utility
+	;     Version: 4.0.24.1
+	;     Date="2018/09/11" Time="07:22:53" UTC="2"
+	;
+	;     Found 177 settings
+	;
+	TPM Device
+		Hidden
+		*Available
+	TPM State
+		Disable
+		*Enable
+	Clear TPM
+		No
+		*On next boot
+	TPM Activation Policy
+		F1 to Boot
+		Allow user to reject
+		*No prompts
+	Fast Boot
+		Disable
+		*Enable
+	NumLock on at boot
+		Disable
+		*Enable
+	Video Memory Size
+		32 MB
+		64 MB
+		128 MB
+		256 MB
+		*512 MB
+	Virtualization Technology (VTx)
+		Disable
+		*Enable
+	Virtualization Technology for Directed I/O (VTd)
+		Disable
+		*Enable
+	Trusted Execution Technology (TXT)
+		*Disable
+		Enable
+	Configure Legacy Support and Secure Boot
+	Legacy Support Enable and Secure Boot Disable
+	*Legacy Support Disable and Secure Boot Enable
+	Legacy Support Disable and Secure Boot Disable
+	
+2. Save all the files into one folder and call them like your models in MDT database e.g.
+	800G2DM.REPSET
+	800G2TWR.REPSET
+	800G3DM.REPSET
+	800G3TWR.REPSET
+	Z4G6.REPSET
+	
+3. Add the following files into the same folder
+	BiosConfigUtility64.exe
+	password.bin
+
+4. Create a Package without program
+	HP BIOS Configuration Utility 4.0.24.1 Englisch
+	
+5. Add the following steps to your task sequence in WinPE
+
+	1.	a. Type: Group
+		b. Name: Configure BIOS for HP
+		c. Condition: Task Sequence Variable MakeAlias equals "HP"
+		d. Command line:
+		e. Start in:
+		f. Package:
+		
+		2.	a. Type: Run Command Line
+			b. Name: Set BIOS Password
+			c. Condition:
+			d. Command line: BiosConfigUtility64.exe /nspwdfile:"password.bin" /cspwdfile:"password.bin" /log
+			e. Start in: %_SMSTSMDataPath%\Packages\PS100AB1\
+			f. Package: PS100AB1, HP BIOS Configuration Utility 4.0.24.1 Englisch
+		
+		3.	a. Type: Run Command Line
+			b. Name: Set BIOS Settings for %Model%
+			c. Condition:
+			d. Command line: BiosConfigUtility64.exe /SetConfig:"%ModelAlias%.REPSET" /cspwdfile:"password.bin" /log
+			e. Start in: %_SMSTSMDataPath%\Packages\PS100AB1\
+			f. Package: PS100AB1, HP BIOS Configuration Utility 4.0.24.1 Englisch
+		
+		4.	a. Type: Restart Computer
+			b. Name: Restart Computer
+			c. Condition:
+			d. Command line:
+			e. Start in:
+			f. Package:
+
+That way you are able to add new HP models without touching the task sequence.	
