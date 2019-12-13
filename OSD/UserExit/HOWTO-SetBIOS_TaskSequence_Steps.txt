@@ -39,9 +39,6 @@
 	Virtualization Technology for Directed I/O (VTd)
 		Disable
 		*Enable
-	Trusted Execution Technology (TXT)
-		*Disable
-		Enable
 	Configure Legacy Support and Secure Boot
 	Legacy Support Enable and Secure Boot Disable
 	*Legacy Support Disable and Secure Boot Enable
@@ -53,15 +50,13 @@
 	800G3DM.REPSET
 	800G3TWR.REPSET
 	Z4G6.REPSET
-	
-3. Add the following files into the same folder
 	BiosConfigUtility64.exe
 	password.bin
 
-4. Create a Package without program
+3. Create a Package without program
 	HP BIOS Configuration Utility 4.0.24.1 Englisch
 	
-5. Add the following steps to your task sequence in WinPE
+4. Add the following steps to your task sequence in WinPE
 
 	1.	a. Type: Group
 		b. Name: Configure BIOS for HP
@@ -91,4 +86,4 @@
 			e. Start in:
 			f. Package:
 
-That way you are able to add new HP models without touching the task sequence.	
+That way you are able to add new HP models without touching the task sequence and confifure BIOS.	
