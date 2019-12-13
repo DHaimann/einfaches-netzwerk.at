@@ -86,4 +86,4 @@
 			e. Start in:
 			f. Package:
 
-That way you are able to add new HP models without touching the task sequence.	
+That way you are able to add new HP models and configure BIOS without touching the task sequence.	
