@@ -520,7 +520,15 @@ Function Get-asDellBIOSUpdates {
 
         # Finish Teams message
         Write-asTeamsMessage -MessageName "RunTime" -MessageValue "Total $RunTime minutes"
-        If ($SendTeams) {            Send-asTeamsMessage -MessageTitle "Dell BIOS Updates" `                -MessageText "Summary about the execution of $Global:Component" `                -ActivityTitle "DriverFactory" `                -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `                -ActivityText "Script finished" `                -ActivityImagePath "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Dell_Logo.svg/768px-Dell_Logo.svg.png" `                -ButtonName "Dell Support" `                -ButtonUri "https://www.dellemc.com/de-at/services/support-services/index.htm"
+        If ($SendTeams) {
+	    Send-asTeamsMessage -MessageTitle "Dell BIOS Updates" `
+                -MessageText "Summary about the execution of $Global:Component" `
+                -ActivityTitle "DriverFactory" `
+                -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `
+                -ActivityText "Script finished" `
+                -ActivityImagePath "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Dell_Logo.svg/768px-Dell_Logo.svg.png" `
+                -ButtonName "Dell Support" `
+                -ButtonUri "https://www.dellemc.com/de-at/services/support-services/index.htm"
         }
 
         # Finish log file
