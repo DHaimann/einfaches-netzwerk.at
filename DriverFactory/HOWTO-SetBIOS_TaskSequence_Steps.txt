@@ -39,9 +39,6 @@
 	Virtualization Technology for Directed I/O (VTd)
 		Disable
 		*Enable
-	Trusted Execution Technology (TXT)
-		*Disable
-		Enable
 	Configure Legacy Support and Secure Boot
 	Legacy Support Enable and Secure Boot Disable
 	*Legacy Support Disable and Secure Boot Enable
