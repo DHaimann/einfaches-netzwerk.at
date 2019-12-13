@@ -1,0 +1,136 @@
+1. Download all SSM-enabled drivers which are not member of the driver pack for each model
+2. Create SSM driver packages for each model with the following files without program e.g. for HP EliteDesk 800 G2 DM 65W
+	SP98454.cva
+	SP98454.exe
+	SP99434.cva
+	SP99434.exe
+	ssm.cab
+	SSM.exe
+	
+3. Create HP BIOS Packages with Get-asHPBIOSUpdates.ps1
+
+5. Prepare MDT Database for all models and fill out the package ID per model
+	a. SSMDriverPackageID
+	b. BIOSUpdatePackageID
+	
+4. Create the following task sequence steps after restart in full OS
+
+	1.	a. Type: Group
+		b. Name: Install Driver Software for HP
+		c. Condition: Task Sequence Variable MakeAlias equals "HP"
+		d. Command line:
+		e. Start in:
+		f. Package:
+		
+		2.	a. Type: Run Command Line
+			b. Name: Reset BIOS Password
+			c. Condition:
+			d. Command line: BiosConfigUtility64.exe /nspwdfile:"" /cspwdfile:"password.bin" /log
+			e. Start in: %_SMSTSMDataPath%\Packages\PS100AB1\
+			f. Package: PS100AB1, HP BIOS Configuration Utility 4.0.24.1 Englisch
+		
+		3.	a. Type: Group
+			b. Name: Apply HP Driver Package
+			c. Condition:
+			d. Command line:
+			e. Start in:
+			f. Package:
+
+			4.	a. Type: Set Dynamic Variables
+				b. Name: Set Driver Download
+				c. Condition:
+				d. Dynamic rules and variables:
+					SET OSDDownloadDestinationLocationType = "TSCache"
+					SET OSDDownloadContinueDownloadOnError = "1"
+					SET OSDDownloadDownloadPackages = "%SSMDriverPackageID%"
+					SET OSDDownloadDestinationVariable = "OSDSSMPackage"
+			
+			5.	a. Type: Run Command Line
+				b. Name: Downloading Driver Package %SSMDriverPackageID%
+				c. Condition:
+				d. Command line: OSDDownloadContent.exe
+				e. Start in:
+				f. Package:
+			
+			6.	a. Type: Set Dynamic Variables
+				b. Name: Reset Download Variables
+				c. Condition:
+				d. Dynamic rules and variables:
+					SET OSDDownloadDestinationLocationType = ""
+					SET OSDDownloadContinueDownloadOnError = ""
+					SET OSDDownloadDownloadPackages = ""
+					SET OSDDownloadDestinationVariable = ""
+				
+			7.	a. Type: Run Command Line
+				b. Name: Apply HP Drivers for %Model%
+				c. Condition:
+				d. Command line: %OSDSSMPackage01%\SSM.exe %OSDSSMPackage01% /a /d /log:"C:\Temp" /s /noreboot
+				e. Start in:
+				f. Package:
+
+			8.	a. Type: Restart Computer
+				b. Name: Restart Computer
+				c. Condition:
+				d. Command line:
+				e. Start in:
+				f. Package:
+
+		9.	a. Type: Group
+			b. Name: Apply HP BIOS Package
+			c. Condition:
+			d. Command line:
+			e. Start in:
+			f. Package:
+			
+			10.	a. Type: Set Dynamic Variables
+				b. Name: Set HP BIOS Download
+				c. Condition:
+				d. Dynamic rules and variables:
+					SET OSDDownloadDestinationLocationType = "TSCache"
+					SET OSDDownloadContinueDownloadOnError = "1"
+					SET OSDDownloadDownloadPackages = "%BIOSUpdatePackageID%"
+					SET OSDDownloadDestinationVariable = "BIOSUpdatePackage"
+			
+			11.	a. Type: Run Command Line
+				b. Name: Downloading HP BIOS Package %BIOSUpdatePackageID%
+				c. Condition:
+				d. Command line: OSDDownloadContent.exe
+				e. Start in:
+				f. Package:
+			
+			12.	a. Type: Set Dynamic Variables
+				b. Name: Reset Download Variables
+				c. Condition:
+				d. Dynamic rules and variables:
+					SET OSDDownloadDestinationLocationType = ""
+					SET OSDDownloadContinueDownloadOnError = ""
+					SET OSDDownloadDownloadPackages = ""
+					SET OSDDownloadDestinationVariable = ""
+				
+			13.	a. Type: Run Command Line
+				b. Name: Apply HP BIOS for %Model%
+				c. Condition:
+				d. Command line: %BIOSUpdatePackage01%\SSM.exe %BIOSUpdatePackage01% /a /d /log:"C:\Temp" /s /noreboot
+				e. Start in:
+				f. Package:
+
+			14.	a. Type: Restart Computer
+				b. Name: Restart Computer
+				c. Condition:
+				d. Command line:
+				e. Start in:
+				f. Package:
+
+	15.	a. Type: Run Command Line
+		b. Name: Set BIOS Password
+		c. Condition:
+		d. Command line: BiosConfigUtility64.exe /nspwdfile:"password.bin" /cspwdfile:"password.bin" /log
+		e. Start in: %_SMSTSMDataPath%\Packages\PS100AB1\
+		f. Package: PS100AB1, HP BIOS Configuration Utility 4.0.24.1 Englisch
+
+	
+		
+
+
+
+	
