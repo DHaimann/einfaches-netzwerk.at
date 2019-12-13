@@ -1,4 +1,4 @@
-﻿Function Start-asLog {
+Function Start-asLog {
     [CmdletBinding()]
         Param (
             [ValidateScript({ Split-Path $_ -Parent | Test-Path })]
