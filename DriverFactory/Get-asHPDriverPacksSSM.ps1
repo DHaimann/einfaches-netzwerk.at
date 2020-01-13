@@ -604,7 +604,14 @@ Function Get-asHPDriverPacks {
         # Finish Teams message
         Write-asTeamsMessage -MessageName "RunTime" -MessageValue "Total $RunTime minutes"
         If ($SendTeams) {
-			Send-asTeamsMessage -MessageTitle "HP Driver Packs" `                -MessageText "Summary about the execution of $Global:Component" `                -ActivityTitle "DriverFactory" `                -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `                -ActivityText "Script finished" `                -ActivityImagePath "https://www8.hp.com/at/de/images/i/hpi/header-footer/caas-hf-v3.2/hpi-hp-logo-pr.gif" `                -ButtonName "HP Support" `                -ButtonUri "https://support.hp.com/at-de/drivers"
+		Send-asTeamsMessage -MessageTitle "HP Driver Packs" `
+                -MessageText "Summary about the execution of $Global:Component" `
+                -ActivityTitle "DriverFactory" `
+                -ActivitySubtitle "$(Get-Date -UFormat "%d.%m.%Y, %R")" `
+                -ActivityText "Script finished" `
+                -ActivityImagePath "https://www8.hp.com/at/de/images/i/hpi/header-footer/caas-hf-v3.2/hpi-hp-logo-pr.gif" `
+                -ButtonName "HP Support" `
+                -ButtonUri "https://support.hp.com/at-de/drivers"
 		}
 
         #Finish log file
