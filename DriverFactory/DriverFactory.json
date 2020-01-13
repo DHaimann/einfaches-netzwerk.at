@@ -18,7 +18,7 @@
 	"FileServerShareName": "sharename$",
 	"FileServerHPBIOSSubfolder": "OSD\\HP BIOS Update Packages",
 	"FileServerHPDriversSubfolder": "OSD\\HP Driver Packages",
-	"FileServerHPSSMSubfolder": "OSD\\HP SSM Driver Packages"
+	"FileServerHPSSMSubfolder": "OSD\\HP SSM Driver Packages",
 	"FileServerDellBIOSSubfolder": "OSD\\Dell BIOS Update Packages",
 	"FileServerDellDriversSubfolder": "OSD\\Dell Driver Packages"
 } 
