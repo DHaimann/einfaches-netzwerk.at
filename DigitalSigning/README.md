@@ -6,4 +6,4 @@ run install.ps1 with elevated rights
 
 or
 
-Create #memcm application and use Version.txt as detection method.
+Create #memcm application and use Version.txt as detection method. 
