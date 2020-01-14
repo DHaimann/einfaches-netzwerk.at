@@ -1,7 +1,8 @@
 Author: Dietmar Haimann
 
 Copy folder DigitalSigning to local disk
-Run install.ps1 with elevated rights
+
+run install.ps1 with elevated rights
 
 or
 
