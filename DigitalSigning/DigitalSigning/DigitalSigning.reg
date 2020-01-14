@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\exefile\shell\DigitalSigning]
+@="Mit PowerShell digital signieren"
+"Icon"="\"C:\\Program Files\\DigitalSigning\\IT_Logo.ico\",0"
+
+[HKEY_CLASSES_ROOT\exefile\shell\DigitalSigning\command]
+@="powershell.exe -executionpolicy bypass -noprofile -noexit -command \"& {. 'C:\\Program Files\\DigitalSigning\\Invoke-asCodeSigning.ps1' -Path '%1'\"}"
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\shell\DigitalSigning]
+@="Mit PowerShell digital signieren"
+"Icon"="\"C:\\Program Files\\DigitalSigning\\IT_Logo.ico\",0"
+
+[HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\shell\DigitalSigning\command]
+@="powershell.exe -executionpolicy bypass -noprofile -noexit -command \"& {. 'C:\\Program Files\\DigitalSigning\\Invoke-asCodeSigning.ps1' -Path '%1'\"}"

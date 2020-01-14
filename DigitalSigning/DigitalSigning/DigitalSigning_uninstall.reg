@@ -1,0 +1,4 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_CLASSES_ROOT\exefile\shell\DigitalSigning]
+[-HKEY_CLASSES_ROOT\Microsoft.PowerShellScript.1\shell\DigitalSigning]
