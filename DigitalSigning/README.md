@@ -2,5 +2,5 @@ Author: Dietmar Haimann
 
 Copy folder DigitalSigning to local disk
 Run install.ps1 with elevated rights
- - or -
+ - or - 
 Create #memcm application and use Version.txt as detection method.
