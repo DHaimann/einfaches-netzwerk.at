@@ -463,7 +463,7 @@ Function Get-asDellDriverPacks {
                         
                     # Compress drivers
                     If ($Compress) {
-                        Compress-Archive -Path "$ExtractFolderFull\*" -DestinationPath $ExtractFolderFull -CompressionLevel Optimal -Force
+                        Compress-Archive -Path "$ExtractFolderFull\*" -DestinationPath "$ExtractFolder\$DellModelFullModelName\Drivers.zip" -CompressionLevel Optimal -Force
 			Write-asLog -Message "Drivers compressed to zip-file" -LogLevel 1
                     }
                     
