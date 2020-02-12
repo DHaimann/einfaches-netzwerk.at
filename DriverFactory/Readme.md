@@ -40,6 +40,7 @@
 			Use -SendMail to get a summary via e-mail
 			Use -SendTeams to get a summary via Microsoft Teams
 			or both			
+			Use -Compress to work with Drivers.zip
 	Description:
 		The script does the following:
 			Reads C:\Util\DriverFactory\DriverFactory.json for settings
@@ -89,6 +90,9 @@
 			@SeguraOSD
 			https://www.powershellgallery.com/profiles/Segura
 			https://www.osdeploy.com/
-		
+			
+		Johan Arwidmark
+			@jarwidmark
+			https://deploymentresearch.com/		
 		
 		... and so many more!
