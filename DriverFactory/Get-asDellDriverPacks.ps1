@@ -243,6 +243,8 @@ Function Import-asCMModule {
 Function Get-asDellDriverPacks {
       [CmdletBinding()]
       param (
+      	[switch]
+	$Compress,
         [switch]
         $SendMail,
 
@@ -458,14 +460,12 @@ Function Get-asDellDriverPacks {
                     }
                     $null = Copy-Item -Path "$CopyFromDir\*" -Destination "$ExtractFolderfull" -Container -Force -Recurse
                     Write-asLog -Message "Driver package files copied to $ExtractFolderfull" -LogLevel 1
-                    
-                    <#
-                    # Copy Extrafiles
-                    If (!($null -eq $($Global:Settings.ExtraFiles))) {                    
-                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\DellBios\*" -Destination "$ExtractFolderfull" -Force
-                        Write-asLog -Message "Extrafiles copied to $ExtractFolderfull" -LogLevel 1
+                        
+                    # Compress drivers
+                    If ($Compress) {
+                        Compress-Archive -Path "$ExtractFolderFull\*" -DestinationPath $ExtractFolderFull -CompressionLevel Optimal -Force
+			Write-asLog -Message "Drivers compressed to zip-file" -LogLevel 1
                     }
-                    #>                    
                     
                     # Die Dateien auf den Fileserver kopieren
                     If ($DownloadToServer) {
@@ -477,8 +477,14 @@ Function Get-asDellDriverPacks {
                         }
 
                         Start-Sleep -Seconds 5
+                        $null = New-Item -Path $PackageSourceFull -ItemType Directory -Force
                         
-                        $null = Copy-Item -Path "$ExtractFolderfull" -Destination "$PackageSourceFull" -Container -Force -Recurse
+                        If ($Compress) {
+                            $null = Copy-Item -Path "$ExtractFolderfull.zip" -Destination "$PackageSourceFull\Drivers.zip" -Force
+                        } Else {
+                            $null = Copy-Item -Path "$ExtractFolderfull" -Destination "$PackageSourceFull" -Container -Force -Recurse
+                        }
+                        
                         Write-asLog -Message "Package files copied to $PackageSourceFull" -LogLevel 1
                         Write-asLog -Message "Will create ConfigMgr package now..." -LogLevel 1
 
@@ -547,4 +553,4 @@ Function Get-asDellDriverPacks {
     }
 }
  
-Get-asDellDriverPacks -SendMail -SendTeams
+Get-asDellDriverPacks -Compress -SendMail -SendTeams
