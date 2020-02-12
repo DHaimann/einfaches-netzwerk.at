@@ -243,6 +243,8 @@ Function Import-asCMModule {
 Function Get-asHPDriverPacks {
       [CmdletBinding()]
       param (
+      	[switch]
+	$Compress,
         [switch]
         $SendMail,
 
@@ -446,11 +448,10 @@ Function Get-asHPDriverPacks {
                     Write-asLog -Message "DriverPackInfo.xml created in $ExtractFolderfull" -LogLevel 1                    
                     Write-asLog -Message "Driver package files copied to $ExtractFolderfull" -LogLevel 1
 
-                    <# Copy extra files to extract folder
-                    If (!($null -eq $($Global:Settings.ExtraFiles))) {                    
-                        $null = Copy-Item -Path "$($Global:Settings.ExtraFiles)\HPBios\*" -Destination "$ExtractFolderfull" -Force
-                        Write-asLog -Message "Extrafiles copied to $ExtractFolderfull" -LogLevel 1
-                    }#>
+		    # Compress drivers
+                    If ($Compress) {
+                        Compress-Archive -Path "$ExtractFolderFull\*" -DestinationPath "$ExtractFolder\$HPModelHPModel\Drivers.zip" -CompressionLevel Optimal -Force
+                    }
 		    
                     #Copy files to server
                     If ($DownloadToServer) {
@@ -463,8 +464,14 @@ Function Get-asHPDriverPacks {
                         }
 
                         Start-Sleep -Seconds 5
+                        $null = New-Item -Path $PackageSourceFull -ItemType Directory -Force
                         
-                        $null = Copy-Item -Path "$ExtractFolderfull" -Destination "$PackageSourceFull" -Container -Force -Recurse
+                        If ($Compress) {
+                            $null = Copy-Item -Path "$ExtractFolderfull.zip" -Destination "$PackageSourceFull\Drivers.zip" -Force
+
+                        } Else {
+                            $null = Copy-Item -Path "$ExtractFolderfull" -Destination "$PackageSourceFull" -Container -Force -Recurse
+                        }
                         Write-asLog -Message "Package files copied to $PackageSourceFull" -LogLevel 1
                         Write-asLog -Message "Will create ConfigMgr package now..." -LogLevel 1
 
@@ -534,4 +541,4 @@ Function Get-asHPDriverPacks {
 } 
 
 #Execute Script
-Get-asHPDriverPacks -SendMail -SendTeams
+Get-asHPDriverPacks -Compress -SendMail -SendTeams
