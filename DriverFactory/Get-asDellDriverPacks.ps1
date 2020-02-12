@@ -480,7 +480,7 @@ Function Get-asDellDriverPacks {
                         $null = New-Item -Path $PackageSourceFull -ItemType Directory -Force
                         
                         If ($Compress) {
-                            $null = Copy-Item -Path "$ExtractFolderfull.zip" -Destination "$PackageSourceFull\Drivers.zip" -Force
+                            $null = Copy-Item -Path "$ExtractFolder\$DellModelFullModelName\Drivers.zip" -Destination "$PackageSourceFull\Drivers.zip" -Force
                         } Else {
                             $null = Copy-Item -Path "$ExtractFolderfull" -Destination "$PackageSourceFull" -Container -Force -Recurse
                         }
