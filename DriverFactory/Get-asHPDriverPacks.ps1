@@ -450,7 +450,7 @@ Function Get-asHPDriverPacks {
 
 		    # Compress drivers
                     If ($Compress) {
-                        Compress-Archive -Path "$ExtractFolderFull\*" -DestinationPath "$ExtractFolder\$HPModelHPModel\Drivers.zip" -CompressionLevel Optimal -Force
+                        Compress-Archive -Path "$ExtractFolderFull\*" -DestinationPath "$ExtractFolder\$HPModelHPModel\Drivers.zip" -CompressionLevel Fastest -Force
                     }
 		    
                     #Copy files to server
