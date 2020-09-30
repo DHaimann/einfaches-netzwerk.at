@@ -1,4 +1,4 @@
-﻿Function Install-asVendorModule {
+Function Install-asVendorModule {
     [CmdletBinding()]
     Param (
         [Parameter(Mandatory = $true)]
@@ -7,7 +7,7 @@
     )
 
     BEGIN {
-        $null = netsh winhttp set proxy proxy-server="proxy.ooe.gv.at:8080" bypass-list="<local>"
+        $null = netsh winhttp set proxy proxy-server="proxy.domain.com:8080" bypass-list="<local>"
     }
     PROCESS {
     
