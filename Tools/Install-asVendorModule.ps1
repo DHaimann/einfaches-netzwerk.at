@@ -7,17 +7,32 @@ Function Install-asVendorModule {
     )
 
     BEGIN {
-        $null = netsh winhttp set proxy proxy-server="proxy.domain.com:8080" bypass-list="<local>"
+        $Proxy = "http://proxy.ooe.gv.at:8080"
+        $Username = "user@domain.com"
+        $Password = ConvertTo-SecureString 'P@ssw0rd1' -AsPlainText -Force
+        $Credentials = New-Object System.Management.Automation.PSCredential ("$Username", $Password)
+
     }
     PROCESS {
-    
-        $NuGetLocal = Get-PackageProvider -ListAvailable | Where-Object -Property Name -EQ NuGet
+        Try {
+            $NuGetLocal = Get-PackageProvider -ListAvailable 'NuGet' -ErrorAction Stop
+            [Version]$NuGetLocalVersion = $NuGetLocal.Version
 
-        If ($null -eq $NuGetLocal) {
-            Install-PackageProvider -Name 'NuGet' -MinimumVersion 2.8.5.201 -Force -Scope AllUsers
-            Install-Module -Name 'PowerShellGet' -Force -Scope AllUsers -AllowClobber -SkipPublisherCheck
-            Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+            $NuGetOnline = Find-PackageProvider -Name 'NuGet' -Proxy $Proxy -ProxyCredential $Credentials
+            [Version]$NuGetOnlineVersion = $NuGetOnline.Version
+
+            If ($NuGetLocalVersion -ne $NuGetOnlineVersion) {
+                Install-PackageProvider -Name 'NuGet' -MinimumVersion 2.8.5.201 -Scope AllUsers -Verbose -Proxy $Proxy -ProxyCredential $Credentials
+                Update-Module -Name 'PowerShellGet' -Scope AllUsers -AcceptLicense -Verbose -Proxy $Proxy -ProxyCredential $Credentials
+            }
         }
+
+        Catch {
+            Install-PackageProvider -Name 'NuGet' -MinimumVersion 2.8.5.201 -Force -Scope AllUsers -Verbose -Proxy $Proxy -ProxyCredential $Credentials
+            Install-Module -Name 'PowerShellGet' -Repository PSGallery -Force -Scope AllUsers -AllowClobber -SkipPublisherCheck -Verbose -Proxy $Proxy -ProxyCredential $Credentials
+        }
+        
+        Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
         $ModuleOnline = Find-Module -Name $ModuleName -Repository 'PSGallery'
         [Version]$ModuleOnlineVersion = $ModuleOnline.Version
@@ -31,11 +46,10 @@ Function Install-asVendorModule {
             }
         }
         Catch {
-            Install-Module -Name $ModuleName -Repository 'PSGallery' -Force -Scope AllUsers -SkipPublisherCheck -AcceptLicense
+            Install-Module -Name $ModuleName -Repository PSGallery -Force -Scope AllUsers -SkipPublisherCheck -AcceptLicense
         }
     }
-    END {
-        $null = netsh winhttp reset proxy
+    END {        
     }    
 }
 
