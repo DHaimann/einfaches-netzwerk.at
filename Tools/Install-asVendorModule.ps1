@@ -7,7 +7,7 @@ Function Install-asVendorModule {
     )
 
     BEGIN {
-        $Proxy = "http://proxy.ooe.gv.at:8080"
+        $Proxy = "http://proxy.domain.local:8080"
         $Username = "user@domain.com"
         $Password = ConvertTo-SecureString 'P@ssw0rd1' -AsPlainText -Force
         $Credentials = New-Object System.Management.Automation.PSCredential ("$Username", $Password)
