@@ -16,6 +16,7 @@ Function Install-asVendorModule {
         If ($null -eq $NuGetLocal) {
             Install-PackageProvider -Name 'NuGet' -MinimumVersion 2.8.5.201 -Force -Scope AllUsers
             Install-Module -Name 'PowerShellGet' -Force -Scope AllUsers -AllowClobber -SkipPublisherCheck
+            Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
         }
 
         $ModuleOnline = Find-Module -Name $ModuleName -Repository 'PSGallery'
