@@ -153,6 +153,8 @@ $Benutzer = ($Benutzer.Split("\"))[1]
 (Get-Content -Path "C:\Users\$Benutzer\AppData\Roaming\Microsoft\Network\Connections\Pbk\rasphone.pbk") | `
 ForEach-Object {$_ -replace 'VPNStrategy=.*', 'VPNStrategy=14'} | `
 ForEach-Object {$_ -replace 'NumCustomPolicy=.*', "NumCustomPolicy=1 `r`nCustomIPSecPolicies=020000000200000003000000030000000200000003000000"} | `
+ForEach-Object {$_ -replace 'IpInterfaceMetric=.*', 'IpInterfaceMetric=10'} | `
+ForEach-Object {$_ -replace 'Ipv6InterfaceMetric=.*', 'Ipv6InterfaceMetric=10'} | `
 Set-Content -Path "C:\Users\$Benutzer\AppData\Roaming\Microsoft\Network\Connections\Pbk\rasphone.pbk" -Force
 
 Restart-Service RasMan -Force
