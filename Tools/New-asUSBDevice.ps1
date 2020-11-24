@@ -133,21 +133,57 @@ Function New-asUSBDevice {
         $InstallLenght = 0
 
         If ($($WIMFile.Length)/1GB -gt 4) {
-            Write-Host "WIM file is greater than 4GB. Try to split windows image." -ForegroundColor Yellow
+            Write-Host "WIM file is greater than 4GB. Try to extract windows image." -ForegroundColor Yellow
             
             $ExportPath = "C:\Temp\Export"
-            $SplitPath = Join-Path -Path $ExportPath "Split"
-            
             If (Test-Path $ExportPath) { Remove-Item -Path $ExportPath -Recurse -Force }
-            
-            New-Item -Path $SplitPath -ItemType Directory -Force
-            $CopyWIM = Copy-Item -Path $WIMFile -Destination $ExportPath -PassThru
-            $CopyWIM.IsReadOnly = $false            
+            $ExportPath = New-Item -Path $ExportPath -ItemType Directory -Force
 
-			#Split Windows Image
-			Split-WindowsImage -ImagePath "$ExportPath\install.wim" -SplitImagePath "$SplitPath\install.swm" -FileSize 1024 -CheckIntegrity
-			$InstallLenght = 1
-		}
+            $WindowsImages = $WIMFile | ForEach-Object {
+            Get-WindowsImage -ImagePath "$WIMFile"} | ForEach-Object {
+                Get-WindowsImage -ImagePath "$($_.ImagePath)" -Index $($_.ImageIndex) | Select-Object -Property *
+                Write-Host "ImageIndex $($_.ImageIndex): $($_.ImageName)" -ForegroundColor DarkGray
+            }
+
+            $WindowsImages = $WindowsImages | Select-Object -Property ImagePath, ImageIndex, ImageName, Architecture, EditionId, Languages, InstallationType, Version, MajorVersion, MinorVersion, Build
+            foreach ($Image in $WindowsImages) {
+                If ($Image.Architecture -eq '0') {$Image.Architecture = 'x86'}
+                If ($Image.Architecture -eq '6') {$Image.Architecture = 'ia64'}
+                If ($Image.Architecture -eq '9') {$Image.Architecture = 'x64'}
+                If ($Image.Architecture -eq '12') {$Image.Architecture = 'x64 ARM'}
+            }
+
+            If (@($WindowsImages).Count -gt 0) {
+                $WindowsImages = $WindowsImages | Out-GridView -Title "Select OSMedia to Import and press OK (Cancel to Exit)" -PassThru        
+                If($null -eq $WindowsImages) {
+                    Write-Host "Compatible OSMedia was not selected" -ForegroundColor Red
+                    Break
+                } Else {
+                    Write-Host "Successfully selected image index $($WindowsImages.ImageIndex)" -ForegroundColor Green
+                }
+            } else {
+                Write-Host "OSMedia was not found" -ForegroundColor Red
+                Break
+            }
+
+            #Export Windows image
+            Export-WindowsImage -SourceImagePath $WIMFile -SourceIndex $($WindowsImages.ImageIndex) -DestinationImagePath "$ExportPath\install.wim" -CheckIntegrity
+        
+	    $WIMFile = Get-Item -Path $ExportPath\install.wim
+	    $InstallLenght = 1
+
+	    If ($($WIMFile.Length)/1GB -gt 4) {
+	        Write-Host "WIM file is still greater than 4GB. Cannot copy file." -ForegroundColor Red
+			
+		$SplitPath = "C:\Temp\Export\Splitfiles"
+		If (Test-Path $SplitPath) { Remove-Item -Path $SplitPath -Recurse -Force }
+		$SplitPath = New-Item -Path $SplitPath -ItemType Directory -Force
+
+		#Split Windows Image
+		Split-WindowsImage -ImagePath "$ExportPath\install.wim" -SplitImagePath "$SplitPath\install.swm" -FileSize 1024 -CheckIntegrity
+		$InstallLenght = 2
+	    }               
+	}
 		
         #Copy Files from ISO to USB
         Try {
