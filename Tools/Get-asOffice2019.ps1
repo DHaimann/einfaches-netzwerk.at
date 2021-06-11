@@ -1,4 +1,4 @@
-﻿Start-Transcript -Path "C:\Temp\Get-asOffice2019.log" -Force
+Start-Transcript -Path "C:\Temp\Get-asOffice2019.log" -Force
 
 # Variablen definieren
 $ODTPath = "C:\Util\Office Deployment Toolkit"
@@ -126,14 +126,3 @@ Set-CMScriptDeploymentType @DeploymentType -Verbose
 Update-CMDistributionPoint -ApplicationName "Office Professional Plus 2019 64-bit" -DeploymentTypeName $DeploymentTypeName -Confirm:$false
 
 Stop-Transcript
-
-
-
-
-
-
-
-
-
-
-
