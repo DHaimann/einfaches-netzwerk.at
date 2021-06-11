@@ -1,3 +1,20 @@
+<#
+.SYNOPSIS
+    Script zum Aktualisieren der Office 2019-Instrallationsdateien
+.DESCRIPTION
+    - Lädt die aktuellste Version vom Office Deployment Tool nach C:\Temp herunter
+    - Entpackt das ODT nach C:\Util\Office Deployment Toolkit
+    - Lädt mittels configuration_Office2019-x64-Download.xml die aktuellsten Office-Dateien herunter
+    - Kopiert die Dateien auf die Server-Freigabe
+    - Aktualisiert die ConfigMgr-Application inkl. Installationserkennung
+    - Aktualisiert die Distribution Points
+    - Schreibt ein Transkipt nach C:\Temp\Get-asOffice2019.log    
+.EXAMPLE
+.NOTES
+    DateiName:  Get-asOffice2019.ps1
+    Autor:      Dietmar Haimann
+#>
+
 Start-Transcript -Path "C:\Temp\Get-asOffice2019.log" -Force
 
 # Variablen definieren
