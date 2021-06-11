@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Script zum Aktualisieren der Office 2019-Instrallationsdateien
+    Script zum Aktualisieren der Office 2019-Installationsdateien
 .DESCRIPTION
     - Lädt die aktuellste Version vom Office Deployment Tool nach C:\Temp herunter
     - Entpackt das ODT nach C:\Util\Office Deployment Toolkit
