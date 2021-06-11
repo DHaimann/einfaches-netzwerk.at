@@ -9,6 +9,15 @@
     - Aktualisiert die ConfigMgr-Application inkl. Installationserkennung
     - Aktualisiert die Distribution Points
     - Schreibt ein Transkipt nach C:\Temp\Get-asOffice2019.log    
+    
+    - Downloads the latest version of the Office Deployment Tool to C:\Temp 
+    - Unpacks the ODT to C:\Util\Office Deployment Toolkit 
+    - Downloads the latest Office files using configuration_Office2019-x64-Download.xml 
+    - Copies the files to the server share 
+    - Updates the ConfigMgr application including installation detection
+    - Updates the distribution points 
+    - Writes a transcript to C:\Temp\Get-asOffice2019.log
+    
 .EXAMPLE
 .NOTES
     DateiName:  Get-asOffice2019.ps1
